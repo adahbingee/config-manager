@@ -1,13 +1,13 @@
 # config-manager
 
-support type
-int
-float
-double
-bool
+## supported type
+* int
+* float
+* double
+* bool
 
-support constant size array type
-int
-float
-double
-char
+## supported constant size array type
+* int[]
+* float[]
+* double[]
+* char[]
