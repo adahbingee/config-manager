@@ -5,6 +5,9 @@ using namespace std;
 
 #define CFG_PRINT(x) cfgPrint(#x, x)
 
+/*
+ * print int, float, double array
+ */
 template <class T, size_t size>
 void cfgPrint(const string &name, T (&value)[size]) {
 	printf("%-40s ", name.c_str());
@@ -28,6 +31,14 @@ void cfgPrint(const string &name, T (&value)[size]) {
 	}
 }
 
+/*
+ * print char array as string format
+ */
+template <size_t size>
+void cfgPrint(const string &name, char (&value)[size]) {
+	printf("%-40s %s\n", name.c_str(), value);
+}
+
 void cfgPrint(const string &name, int value) {
 	printf("%-40s %d\n", name.c_str(), value);
 }
@@ -38,4 +49,8 @@ void cfgPrint(const string &name, float value) {
 
 void cfgPrint(const string &name, double value) {
 	printf("%-40s %f\n", name.c_str(), value);
+}
+
+void cfgPrint(const string &name, bool value) {
+	printf("%-40s %s\n", name.c_str(), (value)?"true":"false");
 }

@@ -4,3 +4,5 @@ extern float  CFG_2[2];
 extern float  CFG_3;
 extern double CFG_4[2];
 extern double CFG_5;
+extern char   CFG_6[16];
+extern bool   CFG_7;
