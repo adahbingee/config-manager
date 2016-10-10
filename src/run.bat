@@ -1,0 +1,2 @@
+..\Release\ConfigManager.exe 
+pause
