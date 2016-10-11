@@ -55,6 +55,10 @@ void cfgPrint(const string &name, bool value) {
 	printf("%-40s %s\n", name.c_str(), (value)?"true":"false");
 }
 
+void cfgPrint(const string &name, const string &value) {
+	printf("%-40s %s\n", name.c_str(), value.c_str());
+}
+
 template <size_t size>
 void cfgPrint(const string &name, bool (&value)[size]) {
 	printf("%-40s ", name.c_str());

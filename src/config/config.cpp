@@ -1,3 +1,5 @@
+#include "config.h"
+
 int    CFG_0[5]   = {0, -1, 2, 3, 4};
 int    CFG_1      = -50;
 float  CFG_2[2]   = {5.3, -6.3};
@@ -7,3 +9,4 @@ double CFG_5      = 7.8;
 char   CFG_6[16]  = "D:\\workspace\\";
 bool   CFG_7      = true;
 bool   CFG_8[3]   = {true, false ,true};
+string CFG_9      = "test string";

@@ -26,6 +26,7 @@ void ConfigManager::read(const char *fileName) {
 		CFG_READ(CFG_6);
 		CFG_READ(CFG_7);
 		CFG_READ(CFG_8);
+		CFG_READ(CFG_9);
 	}
 	file.close();
 }
@@ -41,6 +42,7 @@ void ConfigManager::write(const char *fileName) {
 	CFG_WRITE(CFG_6);
 	CFG_WRITE(CFG_7);
 	CFG_WRITE(CFG_8);
+	CFG_WRITE(CFG_9);
 	fclose( writeFile );
 }
 
@@ -54,4 +56,5 @@ void ConfigManager::print() {
 	CFG_PRINT(CFG_6);
 	CFG_PRINT(CFG_7);
 	CFG_PRINT(CFG_8);
+	CFG_PRINT(CFG_9);
 }

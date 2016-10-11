@@ -151,6 +151,18 @@ bool cfgRead(const string &line, const string &varName, bool &var) {
 	}
 }
 
+bool cfgRead(const string &line, const string &varName, string &var) {
+	string lineVarName;  // variable name buffer
+	string lineVarValue; // variable value buffer
+	parse(line, lineVarName, lineVarValue);
+	if ( lineVarName == varName ) {
+		var = lineVarValue;
+		return true;
+	} else {
+		return false;
+	}
+}
+
 template <size_t size>
 bool cfgRead(const string &line, const string &varName, bool (&var)[size]) {
 	string lineVarName;  // variable name buffer
