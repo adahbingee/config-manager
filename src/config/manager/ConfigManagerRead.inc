@@ -13,6 +13,12 @@ static void parse(const string &line, string &name, string &value) {
 	if ( regex_match(line, match, pattern) ) {
 		name  = match[1];
 		value = match[2];
+
+		// trim trailing spaces
+		size_t endpos = value.find_last_not_of(" \t");
+		if( string::npos != endpos ) {
+			value = value.substr( 0, endpos+1 );
+		}
 	}
 }
 
