@@ -11,3 +11,4 @@
 * float[]
 * double[]
 * char[]
+* bool[]

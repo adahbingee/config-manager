@@ -6,3 +6,4 @@ extern double CFG_4[2];
 extern double CFG_5;
 extern char   CFG_6[16];
 extern bool   CFG_7;
+extern bool   CFG_8[3];

@@ -5,4 +5,5 @@ CFG_3                                    -1.300000
 CFG_4                                    1.400000, -2.400000
 CFG_5                                    -1.200000
 CFG_6                                    D:\workspacdddd
-CFG_7                                    true
+CFG_7                                    false
+CFG_8                                    false, false, true

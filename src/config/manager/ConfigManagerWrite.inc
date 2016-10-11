@@ -55,3 +55,15 @@ void cfgWrite(const string &name, double value) {
 void cfgWrite(const string &name, bool value) {
 	fprintf(writeFile, "%-40s %s\n", name.c_str(), (value)?"true":"false");
 }
+
+template <size_t size>
+void cfgWrite(const string &name, bool (&value)[size]) {
+	fprintf(writeFile, "%-40s ", name.c_str());
+	for (size_t i = 0; i < size; ++i) {
+		if (i == size-1) {
+			fprintf(writeFile, "%s\n", (value[i])?"true":"false");
+		} else {
+			fprintf(writeFile, "%s, ", (value[i])?"true":"false");
+		}
+	}
+}

@@ -18,7 +18,7 @@ static void parse(const string &line, string &name, string &value) {
 
 static void parseArray(const string &in, vector<string> &element) {
 	smatch match;
-	regex pattern("([0-9-.]+)");
+	regex pattern("([0-9-.A-Za-z]+)");
 	string str = in;
 	element.clear();
 
@@ -27,6 +27,23 @@ static void parseArray(const string &in, vector<string> &element) {
 		element.push_back( match[1].str() );
 		str = match.suffix().str();
 	}
+}
+
+static bool matchBool(const string &in) {
+	// match case insensitive string
+	regex patTrue ("\\s*true\\s*" , regex_constants::icase);
+	regex patFalse("\\s*false\\s*", regex_constants::icase);
+	// match number 0 or 1
+	regex patNum  ("\\s*[01]\\s*");
+	smatch match;
+	if ( regex_match(in, match, patTrue) ) {         // match true
+		return true;
+	} else if ( regex_match(in, match, patFalse) ) { // match false
+		return false;
+	} else if ( regex_match(in, match, patNum) ) {   // match number
+		return stoi( in );
+	}
+	return false;
 }
 
 template <size_t size>
@@ -127,23 +144,31 @@ bool cfgRead(const string &line, const string &varName, bool &var) {
 	string lineVarValue; // variable value buffer
 	parse(line, lineVarName, lineVarValue);
 	if ( lineVarName == varName ) {
-		// match case insensitive string
-		regex patTrue ("\\s*true\\s*" , regex_constants::icase);
-		regex patFalse("\\s*false\\s*", regex_constants::icase);
-		// match number 0 or 1
-		regex patNum  ("\\s*[01]\\s*");
-		smatch match;
-		if ( regex_match(lineVarValue, match, patTrue) ) {         // match true
-			var = true;
-		} else if ( regex_match(lineVarValue, match, patFalse) ) { // match false
-			var = false;
-		} else if ( regex_match(lineVarValue, match, patNum) ) {   // match number
-			var = stoi( lineVarValue );
+		var = matchBool( lineVarValue );
+		return true;
+	} else {
+		return false;
+	}
+}
+
+template <size_t size>
+bool cfgRead(const string &line, const string &varName, bool (&var)[size]) {
+	string lineVarName;  // variable name buffer
+	string lineVarValue; // variable value buffer
+	parse(line, lineVarName, lineVarValue);
+
+	vector<string> arr;
+	parseArray(lineVarValue, arr);
+
+	if ( lineVarName == varName ) {
+		for (size_t i = 0; i < size; ++i) {
+			var[i] = matchBool( arr[i] );
 		}
 		return true;
 	} else {
 		return false;
 	}
+
 }
 
 template <size_t size>
