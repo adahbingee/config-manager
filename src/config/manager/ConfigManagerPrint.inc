@@ -31,6 +31,18 @@ void cfgPrint(const string &name, T (&value)[size]) {
 	}
 }
 
+template <size_t size>
+void cfgPrint(const string &name, bool (&value)[size]) {
+	printf("%-40s ", name.c_str());
+	for (size_t i = 0; i < size; ++i) {
+		if (i == size-1) {
+			printf("%s\n", (value[i])?"true":"false");
+		} else {
+			printf("%s, ", (value[i])?"true":"false");
+		}
+	}
+}
+
 /*
  * print char array as string format
  */
@@ -59,14 +71,3 @@ void cfgPrint(const string &name, const string &value) {
 	printf("%-40s %s\n", name.c_str(), value.c_str());
 }
 
-template <size_t size>
-void cfgPrint(const string &name, bool (&value)[size]) {
-	printf("%-40s ", name.c_str());
-	for (size_t i = 0; i < size; ++i) {
-		if (i == size-1) {
-			printf("%s\n", (value[i])?"true":"false");
-		} else {
-			printf("%s, ", (value[i])?"true":"false");
-		}
-	}
-}

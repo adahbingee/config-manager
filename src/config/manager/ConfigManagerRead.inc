@@ -109,6 +109,40 @@ bool cfgRead(const string &line, const string &varName, double (&var)[size]) {
 	}
 }
 
+template <size_t size>
+bool cfgRead(const string &line, const string &varName, bool (&var)[size]) {
+	string lineVarName;  // variable name buffer
+	string lineVarValue; // variable value buffer
+	parse(line, lineVarName, lineVarValue);
+
+	vector<string> arr;
+	parseArray(lineVarValue, arr);
+
+	if ( lineVarName == varName ) {
+		for (size_t i = 0; i < size; ++i) {
+			var[i] = matchBool( arr[i] );
+		}
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+template <size_t size>
+bool cfgRead(const string &line, const string &varName, char (&var)[size]) {
+	string lineVarName;  // variable name buffer
+	string lineVarValue; // variable value buffer
+	parse(line, lineVarName, lineVarValue);
+
+	if ( lineVarName == varName ) {
+		snprintf(var, size, "%s", lineVarValue.c_str());
+		return true;
+	} else {
+		return false;
+	}
+}
+
 bool cfgRead(const string &line, const string &varName, int &var) {
 	string lineVarName;  // variable name buffer
 	string lineVarValue; // variable value buffer
@@ -163,40 +197,6 @@ bool cfgRead(const string &line, const string &varName, string &var) {
 	parse(line, lineVarName, lineVarValue);
 	if ( lineVarName == varName ) {
 		var = lineVarValue;
-		return true;
-	} else {
-		return false;
-	}
-}
-
-template <size_t size>
-bool cfgRead(const string &line, const string &varName, bool (&var)[size]) {
-	string lineVarName;  // variable name buffer
-	string lineVarValue; // variable value buffer
-	parse(line, lineVarName, lineVarValue);
-
-	vector<string> arr;
-	parseArray(lineVarValue, arr);
-
-	if ( lineVarName == varName ) {
-		for (size_t i = 0; i < size; ++i) {
-			var[i] = matchBool( arr[i] );
-		}
-		return true;
-	} else {
-		return false;
-	}
-
-}
-
-template <size_t size>
-bool cfgRead(const string &line, const string &varName, char (&var)[size]) {
-	string lineVarName;  // variable name buffer
-	string lineVarValue; // variable value buffer
-	parse(line, lineVarName, lineVarValue);
-
-	if ( lineVarName == varName ) {
-		snprintf(var, size, "%s", lineVarValue.c_str());
 		return true;
 	} else {
 		return false;
