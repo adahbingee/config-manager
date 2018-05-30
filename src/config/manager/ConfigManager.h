@@ -3,8 +3,8 @@
 
 class ConfigManager {
 public:
-	static void read(const char *fileName);
-	static void write(const char *fileName);
+	static void read(const char *fileName = "config.txt");
+	static void write(const char *fileName = "config.txt");
 	static void print();
 };
 
